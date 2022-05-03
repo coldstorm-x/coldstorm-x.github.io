@@ -1,0 +1,30 @@
+language: node_js
+node_js:
+    - "0.10"
+
+before_install:
+    - "export DISPLAY=:99.0"
+    - "sh -e /etc/init.d/xvfb start"
+
+install:
+    - "npm install"
+
+before_script:
+    - "npm install -g grunt-cli"
+
+script:
+    - "npm test"
+
+notifications:
+    email: false
+    irc:
+        channels:
+            - "frogbox.es#Frogdev"
+        skip_join: true
+        template:
+            - "[coldstorm] Build #%{build_number}: %{build_url}"
+            - "[%{repository}] %{branch}/%{commit} (%{author}): %{message}"
+
+branches:
+    only:
+    - gh-pages

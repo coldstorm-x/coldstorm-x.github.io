@@ -1,0 +1,8 @@
+# Visual Studio for Web
+*.sln
+Web.config
+node_modules
+.tmp
+dist
+*.sublime-project
+*.sublime-workspace

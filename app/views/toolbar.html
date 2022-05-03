@@ -1,0 +1,89 @@
+﻿<div class="toolbar">
+    <span class="app-notification" ng-click="dismissNotification()" ng-show="appNotification">
+        {{ appNotification }}
+        <i class="icon-remove icon-small"></i>
+    </span>
+
+    <a ng-show="tab.name" ng-click="clearLines(tab)" title="Clear Lines">
+        <i class="icon-ban-circle icon-large" style="vertical-align: baseline !important;"></i>
+    </a>
+
+    <a ng-show="tab.name" ng-click="rejoin(tab)" title="Rejoin Channel">
+        <i class="icon-refresh icon-large" style="vertical-align: baseline !important;"></i>
+    </a>
+
+    <a ng-click="setAway()" title="Mark Away/Back">
+        <span ng-class="{ 'icon-stack':user.awayMsg }">
+            <i class="icon-coffee icon-large" style="vertical-align: baseline !important;"></i>
+            <i ng-show="user.awayMsg" class="icon-ban-circle icon-stack-base red"></i>
+        </span>
+    </a>
+
+    <a ng-click="showSettings=true" title="Settings">
+        <i class="icon-cog icon-large" style="vertical-align: baseline !important;"></i>
+    </a>
+
+    <div class="modal modal-settings" modal="showSettings"
+         ng-init="showSettings=false">
+        <form class="settings" name="settingsForm" ng-submit="saveSettings()">
+            <div class="title">
+                <h1>Settings</h1>
+            </div>
+
+            <div class="setting-container" title="Enable this if you want a 'ping' sound to be played when someone highlights you/sends you a private message">
+                <span>Sound notifications</span>
+                <div class="checkbox setting">
+                    <input type="checkbox" id="cb1"
+                           ng-model="settings.SOUND_NOTIFICATIONS" />
+                    <label for="cb1"></label>
+                </div>
+            </div>
+
+            <div class="setting-container" title="Enable this if you want desktop notifications to be shown when someone highlights you/sends you a private message">
+                <span>Desktop notifications</span>
+                <div class="checkbox setting">
+                    <input type="checkbox" id="cb2"
+                           ng-model="settings.DESKTOP_NOTIFICATIONS" />
+                    <label for="cb2"></label>
+                </div>
+            </div>
+
+            <div class="setting-container" title="Enable this if you want Coldstorm to join all the channels from your previous session">
+                <span>Preserve channels when leaving</span>
+                <div class="checkbox setting">
+                    <input type="checkbox" id="cb3"
+                            ng-model="settings.PRESERVE_CHANNELS" />
+                    <label for="cb3"></label>
+                </div>
+            </div>
+
+            <div class="setting-container" title="The away message that will be set when using the 'coffee' button">
+                <span>Default away message</span>
+                <div class="setting">
+                <input type="text"
+                        ng-model="settings.AWAY_MESSAGE" />
+                </div>
+            </div>
+
+            <div class="setting-container" title="The maximum amount of lines that will be shown in any window">
+                <span>Amount of backlog lines</span>
+                <div class="setting">
+                    <input type="text"
+                            ng-model="settings.BACKLOG_AMOUNT" />
+                </div>
+            </div>
+
+            <div class="setting-container" title="The amount of time that notifications show up for before fading away. Set to 0 to disable fading.">
+                <span>Notification fade time (in seconds)</span>
+                <div class="setting">
+                    <input type="number"
+                            min="0"
+                            ng-model="settings.FADE_NOTIFICATIONS_TIME" />
+                </div>    
+            </div>
+
+            <br style="clear: both" />
+        </form>
+
+    </div>
+</div>

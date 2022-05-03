@@ -1,0 +1,3 @@
+Controllers.controller("SettingsCtrl", [function ()
+{
+}]);

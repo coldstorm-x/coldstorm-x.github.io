@@ -1,0 +1,65 @@
+<form class="login" name="loginForm" ng-submit="login(); requestNotifications();">
+    <div class="title">
+        <h1>Coldstorm</h1>
+    </div>
+
+    <div ng-show="error" class="notice error">
+        {{ error }}
+        <i class="icon-exclamation"></i>
+    </div>
+
+    <label for="username">
+        Username
+    </label>
+
+    <input id="username" type="text" ng-model="user.nickName" required />
+
+    <label for="password">
+        Password
+    </label>
+
+    <input id="password" type="password" ng-model="user.password" />
+
+    <label for="channel">
+        Channels
+    </label>
+
+    <input id="channel" type="text" ng-model="channel" required />
+
+    <label for="color">
+        Color
+    </label>
+
+    <input colorpicker="hex" class="span2" value="" type="text" ng-model="user.color" />
+
+    <button type="submit" ng-disabled="Connection.isOpen()">Login</button>
+
+    <div class="preview" style="color:{{ user.color }}">
+        <span class="time">[{{ time | date:"HH:mm"}}]</span>
+        <span style="color:{{ user.color }}">
+            {{ user.nickName }}
+        </span>
+        <span class="message">I love this color!</span>
+    </div>
+
+    <div class="modal modal-settings" modal="showNews"
+        ng-init="showNews=false">
+        <div ng-include="'app/views/news.html'"></div>
+    </div>
+</form>
+
+<footer>
+    <div>
+        Issues logging in? <a href="http://frigidstorm.com/"><span class="news">Use an older version</span></a>
+    </div>
+    <span class="version">Coldstorm {{ meta.shortHash }}</span>
+    <span>|</span>
+    <a target="_blank" href="https://github.com/coldstorm/coldstorm">Contribute</a>
+    <div>
+        <a href="http://www.geoplugin.com/geolocation/" target="_new">IP Geolocation</a> by <a href="http://www.geoplugin.com/" target="_new">geoPlugin</a>
+    </div>
+    <div>
+        <span ng-click="showNews=true" class="news">What's new?</span>
+    </div>
+    
+</div>
